@@ -1,0 +1,58 @@
+flowchart TD
+    Start([Start: senior SWE, knows the API only])
+
+    subgraph P1[Phase 1 · Week 1 — Transformer mechanics]
+        P1a[Tokenization · BPE]
+        P1b[Embeddings + RoPE]
+        P1c[Self-attention · MHA / GQA]
+        P1d[MLP / SwiGLU]
+        P1e[LayerNorm + residual stream]
+        P1f[Causal LM head]
+        P1build[(Build: nanoGPT-rewrite<br/>overfits 1MB corpus)]
+    end
+
+    subgraph P2[Phase 2 · Week 2 — Training dynamics]
+        P2a[AdamW + weight decay]
+        P2b[Cosine LR + warmup]
+        P2c[Mixed precision · bf16]
+        P2d[Grad clipping + checkpointing]
+        P2e[Scaling laws · Kaplan / Chinchilla]
+        P2build[(Build: tinystories-trainer<br/>stable train + scan)]
+    end
+
+    subgraph P3[Phase 3 · Week 3 — Inference internals]
+        P3a[KV cache · prefill vs decode]
+        P3b[Sampling · temp/top-k/top-p/min-p]
+        P3c[FlashAttention · IO-aware]
+        P3d[Quantization · GPTQ / AWQ / GGUF]
+        P3e[Speculative decoding]
+        P3f[PagedAttention · vLLM]
+        P3build[(Build: kv-and-speculative<br/>benchmark suite)]
+    end
+
+    subgraph P4[Phase 4 · Week 4 — Post-training & alignment]
+        P4a[SFT + chat templates]
+        P4b[LoRA / QLoRA adapters]
+        P4c[RLHF / PPO]
+        P4d[DPO / KTO / IPO]
+        P4e[Constitutional AI / RLAIF]
+        P4build[(Build: align-it<br/>base → SFT → DPO compare)]
+    end
+
+    subgraph Frontier[Frontier — open questions]
+        F1[Reasoning models · o1 / R1 / process RMs]
+        F2[MoE routing + expert parallelism]
+        F3[Long context · YaRN / ring attention]
+        F4[Mech-interp · SAEs / circuits]
+        F5[Mamba / SSM hybrids]
+    end
+
+    Start --> P1
+    P1a --> P1b --> P1c --> P1d --> P1e --> P1f --> P1build
+    P1build --> P2
+    P2a --> P2b --> P2c --> P2d --> P2e --> P2build
+    P2build --> P3
+    P3a --> P3b --> P3c --> P3d --> P3e --> P3f --> P3build
+    P3build --> P4
+    P4a --> P4b --> P4c --> P4d --> P4e --> P4build
+    P4build --> Frontier

@@ -1,0 +1,26 @@
+gantt
+    title LLM Internals — 4-week study plan (~5 hrs/week)
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b %d
+
+    section Phase 1 · Mechanics
+    Pre-read (Vaswani §3, Karpathy video)   :p1r, 2026-05-20, 1d
+    Build nanoGPT-rewrite                   :p1b, after p1r, 4d
+    Teach-back: "what is a transformer"     :p1t, after p1b, 1d
+
+    section Phase 2 · Training
+    Pre-read (AdamW, Scaling, Chinchilla)   :p2r, after p1t, 1d
+    Build tinystories-trainer               :p2b, after p2r, 4d
+    Chinchilla scan + write-up              :p2t, after p2b, 1d
+
+    section Phase 3 · Inference
+    Pre-read (Speculative, FlashAttn)       :p3r, after p2t, 1d
+    Build KV cache + samplers               :p3b1, after p3r, 2d
+    Build speculative decoding              :p3b2, after p3b1, 2d
+    Benchmark + teach-back                  :p3t, after p3b2, 1d
+
+    section Phase 4 · Alignment
+    Pre-read (InstructGPT, DPO, LoRA)       :p4r, after p3t, 1d
+    Build SFT + LoRA                        :p4b1, after p4r, 2d
+    Build DPO + compare                     :p4b2, after p4b1, 2d
+    End-of-plan review                      :p4t, after p4b2, 1d
