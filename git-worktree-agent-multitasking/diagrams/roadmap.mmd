@@ -1,0 +1,25 @@
+flowchart TD
+    Start([Start]) --> Model["Mental model"]
+
+    subgraph S1["Session 1"]
+      Model --> Create["Create branch and detached worktrees"]
+      Create --> Inspect["Inspect list and metadata"]
+    end
+
+    subgraph S2["Session 2"]
+      Inspect --> Guardrails["Branch guardrails"]
+      Guardrails --> Cleanup["Remove prune repair"]
+    end
+
+    subgraph S3["Session 3"]
+      Cleanup --> Split["Split agent tasks"]
+      Split --> Dispatch["Path branch scope prompts"]
+      Dispatch --> Integrate["Compare and integrate branches"]
+    end
+
+    subgraph S4["Session 4"]
+      Integrate --> Playbook["Write personal playbook"]
+      Playbook --> TeachBack["Teach back workflow"]
+    end
+
+    TeachBack --> Done([Ready for real agent multitasking])
