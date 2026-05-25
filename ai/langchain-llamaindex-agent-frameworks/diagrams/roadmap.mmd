@@ -1,0 +1,41 @@
+flowchart TD
+  start["Start: agent framework skill"] --> concepts["Refresh tools, agents, workflows, traces"]
+  concepts --> baseline["Week 1: same agent in LangChain and LlamaIndex"]
+  baseline --> compare["Compare tool schema and agent loop"]
+  compare --> workflow["Week 2: explicit LangGraph and LlamaIndex Workflows"]
+  workflow --> state["State, persistence, interrupts, handoffs"]
+  state --> evals["Week 3: retrieval, memory, observability, evals"]
+  evals --> matrix["Framework-neutral trace and decision matrix"]
+  matrix --> harden["Week 4: harden one reference implementation"]
+  harden --> memo["Selection memo: LangChain, LangGraph, LlamaIndex, or plain Python"]
+
+  subgraph langchain["LangChain ecosystem"]
+    lcAgent["create_agent"]
+    langgraph["LangGraph runtime"]
+    langsmith["LangSmith traces"]
+  end
+
+  subgraph llamaindex["LlamaIndex ecosystem"]
+    fnAgent["FunctionAgent"]
+    agentWorkflow["AgentWorkflow"]
+    workflows["Event-driven Workflows"]
+  end
+
+  subgraph neutral["Framework-neutral engineering"]
+    tools["Tool contracts"]
+    trace["Trace schema"]
+    tests["Eval cases"]
+    guards["Guardrails"]
+  end
+
+  baseline --> lcAgent
+  baseline --> fnAgent
+  workflow --> langgraph
+  workflow --> workflows
+  workflow --> agentWorkflow
+  evals --> langsmith
+  evals --> trace
+  matrix --> tools
+  matrix --> tests
+  harden --> guards
+

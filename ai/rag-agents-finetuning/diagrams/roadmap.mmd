@@ -1,0 +1,43 @@
+flowchart TD
+  start["Start: practical LLM app stack"] --> prereq["Refresh embeddings, IR, evals"]
+  prereq --> rag["Week 1: build traced RAG"]
+  rag --> ragEval["Inspect retrieval before answers"]
+  ragEval --> agent["Week 2: add bounded tool agent"]
+  agent --> trace["Review state, tools, and traces"]
+  trace --> evals["Week 3: compare prompt, RAG, agent"]
+  evals --> boundary["Decision table: prompt, retrieve, tool, tune"]
+  boundary --> tune["Week 4: fine-tuning memo or LoRA dry run"]
+  tune --> capstone["Capstone: defensible LLM assistant"]
+
+  subgraph retrieval["RAG core"]
+    chunk["Chunking"]
+    embed["Embeddings"]
+    retrieve["Retrieve and rerank"]
+    cite["Citations"]
+  end
+
+  subgraph agents["Agent core"]
+    tools["Tool schemas"]
+    state["State"]
+    limits["Limits"]
+    audit["Trace audit"]
+  end
+
+  subgraph tuning["Fine-tuning core"]
+    data["Data audit"]
+    peft["LoRA or QLoRA"]
+    promote["Eval-gated promotion"]
+  end
+
+  rag --> chunk
+  chunk --> embed
+  embed --> retrieve
+  retrieve --> cite
+  agent --> tools
+  tools --> state
+  state --> limits
+  limits --> audit
+  tune --> data
+  data --> peft
+  peft --> promote
+
